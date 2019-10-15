@@ -24,6 +24,16 @@ ramdisk_compression=auto;
 # import patching functions/variables - see for reference
 . tools/ak3-core.sh;
 
+# Get Android version
+android_version="$(file_getprop /system/build.prop "ro.build.version.release")";
+
+# Warn user to reflash magisk on android 10
+if [ "$android_version" != "9" ]; then
+  if [ -d $ramdisk/.backup ]; then
+    ui_print " "; ui_print "PLEASE REFLASH MAGISK TO PRESERVE IT";
+  fi;
+fi;
+
 ## AnyKernel install
 dump_boot;
 write_boot;
