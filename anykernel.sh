@@ -35,7 +35,13 @@ if [ "$android_version" != "9" ]; then
 fi;
 
 ## AnyKernel install
-dump_boot;
-write_boot;
+
+# Edit kernel
+split_boot;
+
+# Flash kernel
+flash_boot;
+flash_dtbo;
+
 ## end install
 
